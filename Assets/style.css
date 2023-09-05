@@ -1,0 +1,15 @@
+.btn-primary {
+  margin: 5px;
+  padding: 1px;
+}
+
+.weather-container {
+  margin-right: 200px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.left-container {
+  margin-right: 25px;
+  margin-bottom: 10px;
+}
