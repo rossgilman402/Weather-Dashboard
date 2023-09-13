@@ -1,6 +1,7 @@
 // DOM ELEMENTS
 var locationButtonsEl = document.querySelector("#location-buttons");
 var searchButtonEl = document.querySelector("#submit");
+var formEl = document.querySelector("#user-form");
 
 // DATA
 var searchHistory;
@@ -55,7 +56,6 @@ var getWeatherData = function (location) {
 
 // //Function to populate the cards on the page
 function populatePage(data) {
-  console.log(data.list[0].weather[0].icon);
   //Populate the top card
   var top = document.querySelector("#top");
   var topHeader = document.querySelector("#top-header");
@@ -68,7 +68,7 @@ function populatePage(data) {
     data.city.name + " " + data.list[0].dt_txt.split(" ")[0];
   topIcon.setAttribute(
     "src",
-    "http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png"
+    "https://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png"
   );
   topTemp.textContent = "Temp: " + data.list[0].main.temp + " F";
   topWind.textContent = "Wind: " + data.list[0].wind.speed + " MPH";
@@ -94,7 +94,9 @@ function populatePage(data) {
       data.city.name + " " + data.list[day].dt_txt.split(" ")[0];
     currentCardIcon.setAttribute(
       "src",
-      "http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png"
+      "https://openweathermap.org/img/w/" +
+        data.list[0].weather[0].icon +
+        ".png"
     );
     currentCardTemp.textContent = "Temp: " + data.list[day].main.temp + " F";
     currentCardWind.textContent = "Wind: " + data.list[day].wind.speed + " MPH";
@@ -163,4 +165,9 @@ startScreen();
 
 locationButtonsEl.addEventListener("click", buttonClickHandler);
 
-searchButtonEl.addEventListener("click", getCity);
+formEl.addEventListener("submit", formSubmitHandler);
+
+function formSubmitHandler(event) {
+  event.preventDefault();
+  getCity();
+}
